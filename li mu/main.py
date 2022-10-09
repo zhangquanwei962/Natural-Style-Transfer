@@ -36,7 +36,6 @@ def preprocess(img, image_shape):
 def postprocess(img):
     img = img[0].to(rgb_std.device)
     img = torch.clamp(img.permute(1, 2, 0) * rgb_std + rgb_mean, 0, 1)
-    #print(torchvision.transforms.ToPILImage()(img.permute(2, 0, 1)).shape)
     return torchvision.transforms.ToPILImage()(img.permute(2, 0, 1))
 
 pretrained_net = torchvision.models.vgg19(pretrained=True)

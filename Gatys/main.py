@@ -231,10 +231,12 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
             style_score = 0
             content_score = 0
 
-            for sl in style_losses:
-                style_score += sl.loss
-            for cl in content_losses:
-                content_score += cl.loss
+            #for sl in style_losses:
+                #style_score += sl.loss
+            style_score = sum([s1.loss for s1 in style_losses])
+            #for cl in content_losses:
+                #content_score += cl.loss
+            content_score = sum([c1.loss for c1 in content_losses])
 
             style_score *= style_weight
             content_score *= content_weight
